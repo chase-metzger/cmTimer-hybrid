@@ -1,0 +1,17 @@
+{
+  "name": "cmTimer",
+  "displayName": "cmTimer",
+  "expo": {
+    "name": "cmTimer",
+    "slug": "cmTimer",
+    "privacy": "public",
+    "platforms": [
+      "web"
+    ],
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    }
+  }
+}
