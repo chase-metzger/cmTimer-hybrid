@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import { View, Alert, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import {
   Input,
   ListItem
@@ -20,6 +20,25 @@ import { connect } from '../context'
 //   selectedSessionName: string,
 //   newSessionName: string
 // }
+
+class SelectableListItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { isSelected, name, onSelected } = this.props;
+    return (
+      <ListItem
+        Component={TouchableOpacity}
+        title={name}
+        chevron={!isSelected}
+        rightIcon={isSelected ? { name: 'check', type: 'feather', color: 'blue' } : null}
+        onPress={() => onSelected(name)}
+      />
+    );
+  }
+}
 
 class NewSessionScreen extends React.Component {
 
@@ -80,25 +99,29 @@ class NewSessionScreen extends React.Component {
   }
 
   renderSession = ({ item }) => {
-    if (item.name !== this.state.selectedSessionName) {
-      return (
-        <ListItem
-          chevron={true}
-          key={item.name}
-          title={item.name}
-          onPress={() => this.onSelectSessionFromList(item.name)}
-        />
-      )
-    } else {
-      return (
-        <ListItem
-          key={item.name}
-          title={item.name}
-          rightIcon={{ name: 'check', type: 'feather', color: 'blue' }}
-          onPress={() => this.onSelectSessionFromList(item.name)}
-        />
-      )
-    }
+    const isSelected = item.name === this.state.selectedSessionName;
+    return <SelectableListItem isSelected={isSelected} name={item.name} onSelected={this.onSelectSessionFromList} />
+    // if (item.name !== this.state.selectedSessionName) {
+    //   return (
+    //     <View key={item.name}>
+    //       <ListItem
+    //         chevron={true}
+    //         title={item.name}
+    //         onPress={() => this.onSelectSessionFromList(item.name)}
+    //       />
+    //     </View>
+    //   )
+    // } else {
+    //   return (
+    //     <View key={item.name}>
+    //       <ListItem
+    //         title={item.name}
+    //         rightIcon={{ name: 'check', type: 'feather', color: 'blue' }}
+    //         onPress={() => this.onSelectSessionFromList(item.name)}
+    //       />
+    //     </View>
+    //   )
+    // }
   }
 
   renderSessionsList = () => {
@@ -113,7 +136,7 @@ class NewSessionScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <Input
           inputStyle={styles.textInput}
           value={this.state.newSessionName}
@@ -124,7 +147,7 @@ class NewSessionScreen extends React.Component {
           onSubmitEditing={() => this.onSubmitEditing()}
         />
         {this.renderSessionsList()}
-      </SafeAreaView>
+      </View>
     )
   }
 }
