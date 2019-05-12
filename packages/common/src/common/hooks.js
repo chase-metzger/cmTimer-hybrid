@@ -251,16 +251,16 @@ export const useAppState = (callback) => {
 //   }
 // }
 
-// export const useUserSettings = () => {
-//   const userSettings = useAsyncStorageObject('userSettings', DEFAULT_USER_SETTINGS, error => console.log(error))
+export const useUserSettings = () => {
+  const userSettings = useStorage('userSettings', DEFAULT_USER_SETTINGS, error => console.log(error))
 
-//   function setSetting(name: string, value: any) {
-//     userSettings.setField(name, value)
-//   }
+  function setSetting(name, value) {
+    userSettings.setField(name, value)
+  }
 
-//   return {
-//     value: userSettings.value,
-//     setSetting,
-//     setAllSettings: (settings: UserSettings) => userSettings.setValue(settings)
-//   }
-// }
+  return {
+    value: userSettings.value,
+    setSetting,
+    setAllSettings: (settings) => userSettings.setValue(settings)
+  }
+}
