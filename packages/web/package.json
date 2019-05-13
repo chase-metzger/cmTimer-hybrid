@@ -5,6 +5,8 @@
   "main": "index",
   "scripts": {
     "start": "expo start --web --non-interactive",
+    "build": "expo build:web",
+    "deploy": "netlify deploy",
     "test": "jest"
   },
   "dependencies": {
@@ -37,6 +39,7 @@
     "babel-preset-expo": "^5.1.1",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.54.0",
+    "netlify-cli": "^2.11.18",
     "react-test-renderer": "16.8.3",
     "webpack-merge": "^4.2.1"
   },
