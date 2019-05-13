@@ -6,21 +6,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-//TODOO ADD ACONSTANTNSLNTALSTLSLLASFLSDFLSDLFSLJFLFSLDFJD
-
-const Constants = {
-  UI: {
-    DEFAULT_TIMER_BACKGROUND_COLOR: 'red',
-    PRESSED_TIMER_BACKGROUND_COLOR: 'green'
-  }
-};
-//import Constants from '../common/constants'
+import Constants from '../common/constants';
 
 import CountdownView from './CountdownView';
 import { useTimerInterval } from '../common/hooks';
 import moment from 'moment';
-
-
 
 export default (props) => {
   const [backgroundColor, setBackgroundColor] = useState(Constants.UI.DEFAULT_TIMER_BACKGROUND_COLOR)
@@ -103,9 +93,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-
   timerText: {
     color: 'white',
     fontSize: 48
   }
-})
+});
