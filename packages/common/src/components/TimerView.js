@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
 
 //TODOO ADD ACONSTANTNSLNTALSTLSLLASFLSDFLSDLFSLJFLFSLDFJD
@@ -76,7 +76,7 @@ export default (props) => {
 
   return (
     <View style={props.style}>
-      <TouchableOpacity
+      <TouchableHighlight
         style={[styles.timerTextContainer, { backgroundColor: backgroundColor }]}
         activeOpacity={0.7}
         onPress={onTimerPress}
@@ -92,7 +92,7 @@ export default (props) => {
             :
             <Text style={styles.timerText}>{moment(timer.time).format('mm:ss:SS')}</Text>
         }
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   )
 }
