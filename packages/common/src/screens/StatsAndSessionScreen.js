@@ -4,7 +4,8 @@ import {
   View,
   Platform,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  StyleSheet
 } from 'react-native';
 
 import { Divider } from 'react-native-elements';
@@ -14,6 +15,7 @@ import StatsView from '../components/StatsView';
 import { MaterialHeaderButtons, Item } from '../components/MaterialHeaderButtons'
 
 import { connect } from '../context';
+import Constants from '../common/constants';
 
 // interface Props {
 //   resetCurrentSession: () => void,
@@ -28,11 +30,9 @@ class StatsAndSessionScreen extends React.Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
     return {
       headerTitle: 'Stats',
-      headerStyle: {
-        marginTop: Platform.OS === 'android' ? 24 : 0,
-        backgroundColor: 'black'
-      },
+      headerStyle: Constants.UI.COMMON_STYLES.header,
       headerTintColor: 'white',
+      headerTitleStyle: Constants.UI.COMMON_STYLES.headerTitle,
       headerLeft: (
         <MaterialHeaderButtons>
           <Item
@@ -67,11 +67,11 @@ class StatsAndSessionScreen extends React.Component {
       currentSession = { times: [], stats: [] };
     }
     return (
-      <SafeAreaView style={{ flex: 1, flexDirection: 'column' }}>
-        <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.innerContainer}>
           <StatsView stats={currentSession.stats} numTimes={currentSession.times.length} />
-          <Divider style={{ height: 2 }} />
-          <ScrollView style={{ flex: 8, backgroundColor: 'white' }}>
+          <Divider style={styles.divider} />
+          <ScrollView style={styles.scrollView}>
             <SessionView key={currentSession.name} name={currentSession.name} times={currentSession.times} />
           </ScrollView>
         </View>
@@ -79,6 +79,23 @@ class StatsAndSessionScreen extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  innerContainer: {
+    flex: 1
+  },
+  divider: {
+    height: 2
+  },
+  scrollView: {
+    flex: 8,
+    backgroundColor: 'white'
+  }
+});
 
 const mapStateToProps = (state) => {
   return {

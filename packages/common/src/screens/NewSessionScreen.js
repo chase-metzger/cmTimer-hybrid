@@ -7,6 +7,7 @@ import {
 
 import { Item, MaterialHeaderButtons } from '../components/MaterialHeaderButtons'
 import { connect } from '../context'
+import Constants from '../common/constants';
 
 // interface Props {
 //   navigation: any,
@@ -45,6 +46,7 @@ class NewSessionScreen extends React.Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
     return {
       headerTitle: 'New Session',
+      headerTitleStyle: Constants.UI.COMMON_STYLES.headerTitle,
       headerLeft: (
         <MaterialHeaderButtons>
           <Item
@@ -140,7 +142,7 @@ class NewSessionScreen extends React.Component {
         <Input
           inputStyle={styles.textInput}
           value={this.state.newSessionName}
-          containerStyle={{ margin: 15 }}
+          containerStyle={styles.inputContainer}
           returnKeyType="done"
           placeholder="New session name..."
           onChangeText={this.setSessionNameInput}
@@ -155,6 +157,9 @@ class NewSessionScreen extends React.Component {
 const styles = StyleSheet.create({
   textInput: {
     color: 'black'
+  },
+  inputContainer: {
+    margin: 15
   }
 })
 
@@ -167,7 +172,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createNewSession: (name: string) => dispatch({ type: 'CREATE_AND_SET_CURRENT_SESSION', payload: name }),
+    createNewSession: (name) => dispatch({ type: 'CREATE_AND_SET_CURRENT_SESSION', payload: name }),
     setCurrentSession: (session) => dispatch({ type: 'SET_CURRENT_SESSION', payload: session })
   }
 }

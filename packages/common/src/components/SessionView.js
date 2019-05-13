@@ -19,7 +19,7 @@ export default ({ name, times }) => {
 
   function renderListItem({ item, index }) {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.listItemContainer}>
         <ListItem
           key={index}
           title={createListItemText(item, index)}
@@ -31,7 +31,7 @@ export default ({ name, times }) => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <SectionList
         sections={[{ data: times }]}
         renderItem={renderListItem}
@@ -43,12 +43,17 @@ export default ({ name, times }) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  listItemContainer: {
+    flex: 1
+  },
   timeListItem: {
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 5
   },
-
   sessionListHeader: {
     backgroundColor: 'lightgray',
     padding: 2
